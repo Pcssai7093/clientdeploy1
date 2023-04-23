@@ -115,7 +115,7 @@ function Navbar() {
                   : "inactive"
               }
             >
-              Profile after dep
+              Profile
               {/* <i class="fa fa-user-circle-o" aria-hidden="true"></i> */}
             </Link>
             <Link
