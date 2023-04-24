@@ -8,11 +8,15 @@ import { IconContext } from "react-icons";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import loginContext from "../../index";
 import { motion } from "framer-motion";
+import { useHistory, Link } from "react-router-dom";
 // * implement service fetching here and next service display component inside this so that
 // * data can be easily filtered
 function Search() {
   const loginStatus = useContext(loginContext);
-
+  const history = useHistory();
+  function handleLogout() {
+    history.push("/signin");
+  }
   const [data, setData] = useState([]);
 
   const [filterData, setFilterData] = useState([]);
@@ -377,7 +381,7 @@ function Search() {
       </div>
     </div>
   ) : (
-    "please Login"
+    <Link to="/signin">Please signin</Link>
   );
 }
 

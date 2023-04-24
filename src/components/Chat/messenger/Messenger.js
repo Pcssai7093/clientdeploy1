@@ -2,7 +2,7 @@ import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
 // import "./messenger.css";
 import styles from "./messenger.module.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
@@ -268,6 +268,6 @@ export default function Messenger() {
       </div>
     </>
   ) : (
-    "please login"
+    <Link to="/signin">Please signin</Link>
   );
 }

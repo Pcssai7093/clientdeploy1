@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import styles from "./Postform.module.css";
 import axios from "axios";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import loginContext from "../../../index";
 import Cookies from "universal-cookie";
 
@@ -311,7 +311,7 @@ const Postform = () => {
       </div>
     </>
   ) : (
-    <h2>404 Error Not Found</h2>
+    <Link to="/signin">Please signin</Link>
   );
 };
 

@@ -85,8 +85,7 @@ function Profile() {
         console.log(err);
       });
   }, []);
-  return (
-    loginStatusObj.isLogin &&
+  return loginStatusObj.isLogin ? (
     userData && (
       <div className={styles.profilePageDiv}>
         <div className={styles.profilePageDiv}>
@@ -284,6 +283,8 @@ function Profile() {
         </div>
       </div>
     )
+  ) : (
+    <Link to="/signin">Please signin</Link>
   );
 }
 
