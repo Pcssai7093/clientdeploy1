@@ -33,7 +33,7 @@ jobs:
           tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_00cf81f07c564533ab7d2372aefbfd8d }}/clientt1:${{ github.sha }}
           file: ./Dockerfile
 
-  Jest:
+  test:
     runs-on: ubuntu-latest
     needs: build
     steps:
