@@ -90,12 +90,12 @@ function App() {
           </Route>
 
           <Route exact path="/logine">
-              <LoginPagee />
+            <LoginPagee />
           </Route>
           <Route exact path="/signupe">
-              <SignUpe />
+            <SignUpe />
           </Route>
-          
+          {/* Routes that require authorization */}
           {/* Routes that require authorization */}
           <Route exact path="/profile/:uid/:profilerId">
             <div className="HomeWrapper">
@@ -106,8 +106,8 @@ function App() {
           </Route>
           <Route exact path="/post/:uid">
             <div className="HomeWrapper">
-                <Navbar />
-                <Postform />
+              <Navbar />
+              <Postform />
             </div>
           </Route>
           <Route exact path="/navbar/:uid">
