@@ -93,107 +93,144 @@ function SignUp() {
   };
 
   return (
-    <div className={style1.container}>
-      <div className={style1.app_wrap}>
-        <div>
-          <h2 className={style1.title}> Create Account</h2>
-        </div>
-
-        <form ref={form} className={style1.form_wrapper}>
-          <div className={style1.username}>
-            <label className={style1.label}> Username</label>
-            <input
-              className={style1.input}
-              type="text"
-              name="username"
-              value={values.username}
-              onChange={handlechange}
-            ></input>
-            {errors.username && (
-              <p className={style1.error}>{errors.username}</p>
-            )}
-          </div>
-
-          <div className={style1.name}>
-            <label className={style1.label}> FullName</label>
-            <input
-              className={style1.input}
-              type="text"
-              name="fullname"
-              value={values.fullname}
-              onChange={handlechange}
-            ></input>
-            {errors.fullname && (
-              <p className={style1.error}>{errors.fullname}</p>
-            )}
-          </div>
-
-          <div className={style1.email}>
-            <label className={style1.label}> Email</label>
-            <input
-              className={style1.input}
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handlechange}
-            ></input>
-            {errors.email && <p className={style1.error}>{errors.email}</p>}
-          </div>
-
-          <div className={style1.password}>
-            <label className={style1.label}> Password</label>
-            <span onClick={handleToggle1}>
-              <Icon icon={icon} size={20} />
-            </span>
-            <input
-              className={style1.input}
-              type={type}
-              name="password"
-              value={values.password}
-              onChange={handlechange}
-            ></input>
-
-            {errors.password && (
-              <p className={style1.error}>{errors.password}</p>
-            )}
-          </div>
-
-          <div className={style1.password}>
-            <label className={style1.label}> Confirm Password</label>
-            <span onClick={handleToggle2}>
-              <Icon icon={icon2} size={20} />
-            </span>
-            <input
-              className={style1.input}
-              type="password"
-              name="confirm_password"
-              value={values.confirm_password}
-              onChange={handlechange}
-            ></input>
-            {errors.confirm_password && (
-              <p className={style1.error}>{errors.confirm_password}</p>
-            )}
-          </div>
-
-          <div>
-            <button className={style1.submit} onClick={handleFormSubmit}>
-              SIGN UP
-            </button>
-          </div>
-
-          <p className={style1.design}>
-            {/* <a href="">Forgot password ?</a> Or */}
-            Have an account?
-            {/* <br></br> */}
+    <div>
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "1rem 2rem",
+          background: "black",
+        }}
+      >
+        <h4 style={{ color: "white" }}>GigWork</h4>
+        <ul
+          style={{
+            display: "flex",
+            listStyle: "none",
+            gap: 10,
+          }}
+        >
+          <li style={{ paddingLeft: "1rem" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              Home
+            </Link>
+          </li>
+          <br />
+          <li>
             <Link
               to="/signin"
-              style={{ textDecoration: "none" }}
-              className={style1.account}
+              style={{ textDecoration: "none", color: "white" }}
             >
-              Signin
+              SignIn
             </Link>
-          </p>
-        </form>
+          </li>
+          <br />
+        </ul>
+      </nav>
+
+      <div className={style1.container}>
+        <div className={style1.app_wrap}>
+          <div>
+            <h2 className={style1.title}> Create Account</h2>
+          </div>
+
+          <form ref={form} className={style1.form_wrapper}>
+            <div className={style1.username}>
+              <label className={style1.label}> Username</label>
+              <input
+                className={style1.input}
+                type="text"
+                name="username"
+                value={values.username}
+                onChange={handlechange}
+              ></input>
+              {errors.username && (
+                <p className={style1.error}>{errors.username}</p>
+              )}
+            </div>
+
+            <div className={style1.name}>
+              <label className={style1.label}> FullName</label>
+              <input
+                className={style1.input}
+                type="text"
+                name="fullname"
+                value={values.fullname}
+                onChange={handlechange}
+              ></input>
+              {errors.fullname && (
+                <p className={style1.error}>{errors.fullname}</p>
+              )}
+            </div>
+
+            <div className={style1.email}>
+              <label className={style1.label}> Email</label>
+              <input
+                className={style1.input}
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={handlechange}
+              ></input>
+              {errors.email && <p className={style1.error}>{errors.email}</p>}
+            </div>
+
+            <div className={style1.password}>
+              <label className={style1.label}> Password</label>
+              <span onClick={handleToggle1}>
+                <Icon icon={icon} size={20} />
+              </span>
+              <input
+                className={style1.input}
+                type={type}
+                name="password"
+                value={values.password}
+                onChange={handlechange}
+              ></input>
+
+              {errors.password && (
+                <p className={style1.error}>{errors.password}</p>
+              )}
+            </div>
+
+            <div className={style1.password}>
+              <label className={style1.label}> Confirm Password</label>
+              <span onClick={handleToggle2}>
+                <Icon icon={icon2} size={20} />
+              </span>
+              <input
+                className={style1.input}
+                type="password"
+                name="confirm_password"
+                value={values.confirm_password}
+                onChange={handlechange}
+              ></input>
+              {errors.confirm_password && (
+                <p className={style1.error}>{errors.confirm_password}</p>
+              )}
+            </div>
+
+            <div>
+              <button className={style1.submit} onClick={handleFormSubmit}>
+                SIGN UP
+              </button>
+            </div>
+
+            <p className={style1.design}>
+              {/* <a href="">Forgot password ?</a> Or */}
+              Have an account?
+              {/* <br></br> */}
+              <Link
+                to="/signin"
+                style={{ textDecoration: "none" }}
+                className={style1.account}
+              >
+                Signin
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

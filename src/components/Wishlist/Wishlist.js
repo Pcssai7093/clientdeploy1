@@ -20,6 +20,7 @@ function Wishlist() {
   const mod = 6;
   const arr = [pic0, pic1, pic2, pic3, pic4, pic5];
   let itr = -1;
+  const [price, setPrice] = useState(0);
   const [data, setData] = useState([]);
   const history = useHistory();
   const [render, setRender] = useState(true);
@@ -53,62 +54,105 @@ function Wishlist() {
       .then((result) => {
         // console.log(result.data.wishlist);
         setData((prev) => result.data.wishlist);
+
+        let sum = 0;
+        result.data.wishlist.forEach((i) => {
+          if (i.isBlock == false) {
+            sum = sum + i.price;
+          }
+        });
+        console.log(sum);
+        setPrice(sum);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [render]);
 
+  const handleOpenRazorpay = (data) => {
+    const options = {
+      key: "rzp_test_BnefbrdGHpkF0K",
+      amount: Number(data.amount) * 100,
+      currency: data.currency,
+      name: "Lancer",
+      order_id: data.id,
+
+      handler: function (response) {
+        console.log(response);
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+
+    rzp.open();
+  };
+
+  const handlePayment = (amount) => {
+    const _data = { amount: amount };
+    axios
+      .post("http://localhost:5000/orders", _data)
+      .then((res) => {
+        console.log(res.data);
+        handleOpenRazorpay(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return loginStatusObj.isLogin ? (
     <div className={styles.wishlistWrapper}>
       {/* <h2>WishList</h2> */}
       <div className={styles.serviceDiv}>
         {data &&
-          data.map((data) => (
-            <div className={styles.card}>
-              <img
-                src={
-                  data.productImages.length > 0
-                    ? data.productImages[0]
-                    : arr[++itr % mod]
-                }
-                alt="John"
-                className={styles.image}
-              />
-              <h3 className={styles.title}>{data.title}</h3>
-              {/* <p className={styles.title}>CEO & Founder, Example</p> */}
-              <p className={styles.price}>₹{data.price}</p>
-              <div className={styles.userData}>
-                <Link to={`profile/${data.seller._id}`}>
-                  <img className={styles.userImg} src={profpic1} alt="" />
-                </Link>
-                <p className={styles.userName}>{data.seller.fullname}</p>
-              </div>
-              <p>
-                <button className={styles.goToServiceButton}>
-                  <Link
-                    to={`/service/${uid}/${data._id}`}
-                    style={{
-                      textDecoration: "none",
-                      fontSize: "18px",
-                      color: "white",
-                    }}
-                  >
-                    {" "}
-                    <i class="fa fa-search" aria-hidden="true"></i>{" "}
-                  </Link>
-                </button>
-                <button
-                  className={styles.wishlistButton}
-                  onClick={() => {
-                    handleDeleteFromWishlist(data._id);
-                  }}
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-              </p>
-            </div>
-          ))}
+          data.map(
+            (data) =>
+              data.isBlock === false && (
+                <div className={styles.card}>
+                  <img
+                    src={
+                      data.productImages.length > 0
+                        ? data.productImages[0]
+                        : arr[++itr % mod]
+                    }
+                    alt="John"
+                    className={styles.image}
+                  />
+                  <h3 className={styles.title}>{data.title}</h3>
+                  {/* <p className={styles.title}>CEO & Founder, Example</p> */}
+                  <p className={styles.price}>₹{data.price}</p>
+                  <div className={styles.userData}>
+                    <Link to={`profile/${data.seller._id}`}>
+                      <img className={styles.userImg} src={profpic1} alt="" />
+                    </Link>
+                    <p className={styles.userName}>{data.seller.fullname}</p>
+                  </div>
+                  <p>
+                    <button className={styles.goToServiceButton}>
+                      <Link
+                        to={`/service/${uid}/${data._id}`}
+                        style={{
+                          textDecoration: "none",
+                          fontSize: "18px",
+                          color: "white",
+                        }}
+                      >
+                        {" "}
+                        <i class="fa fa-search" aria-hidden="true"></i>{" "}
+                      </Link>
+                    </button>
+                    <button
+                      className={styles.wishlistButton}
+                      onClick={() => {
+                        handleDeleteFromWishlist(data._id);
+                      }}
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </p>
+                </div>
+              )
+          )}
       </div>
     </div>
   ) : (

@@ -58,67 +58,103 @@ function LoginPage() {
   };
 
   return (
-    <div className={style2.main}>
-      <div className={style2.sub_main}>
-        <div>
-          <div className={style2.imgs}>
-            <div className={style2.container_image}>
-              <img src={profile} alt="profile" className={style2.profile} />
-            </div>
-          </div>
+    <div>
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "1rem 2rem",
+          background: "black",
+        }}
+      >
+        <h4 style={{ color: "white" }}>GigWork</h4>
+        <ul
+          style={{
+            display: "flex",
+            listStyle: "none",
+            gap: 10,
+          }}
+        >
+          <li style={{ paddingLeft: "1rem" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              Home
+            </Link>
+          </li>
+          <br />
+          <li>
+            <Link
+              to="/signup"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              SignUp
+            </Link>
+          </li>
+          <br />
+        </ul>
+      </nav>
+      <div className={style2.main}>
+        <div className={style2.sub_main}>
           <div>
-            <br></br>
-            <h1>User Login</h1>
-            <br></br>
-
-            <form onSubmit={submitHandler}>
-              <div>
-                <img src={email} alt="email" className={style2.email} />
-                <input
-                  type="text"
-                  value={userEmail}
-                  onChange={(e) => {
-                    setUserEmail(e.target.value);
-                  }}
-                  placeholder="email"
-                  className={`${style2.name} ${style2.inputstyle}`}
-                />
+            <div className={style2.imgs}>
+              <div className={style2.container_image}>
+                <img src={profile} alt="profile" className={style2.profile} />
               </div>
+            </div>
+            <div>
+              <br></br>
+              <h1>User Login</h1>
+              <br></br>
 
-              <div className={style2.second_input}>
-                <img src={pass} alt="pass" className={style2.email} />
+              <form onSubmit={submitHandler}>
+                <div>
+                  <img src={email} alt="email" className={style2.email} />
+                  <input
+                    type="text"
+                    value={userEmail}
+                    onChange={(e) => {
+                      setUserEmail(e.target.value);
+                    }}
+                    placeholder="email"
+                    className={`${style2.name} ${style2.inputstyle}`}
+                  />
+                </div>
 
-                <input
-                  type="password"
-                  value={userPassword}
-                  onChange={(e) => {
-                    setUserPassword(e.target.value);
-                  }}
-                  placeholder="password"
-                  className={`${style2.name} ${style2.inputstyle}`}
-                />
-              </div>
+                <div className={style2.second_input}>
+                  <img src={pass} alt="pass" className={style2.email} />
 
-              <div className={style2.login_button}>
-                <button type="submit" className={style2.buttonstyle}>
-                  Login
-                </button>
-              </div>
+                  <input
+                    type="password"
+                    value={userPassword}
+                    onChange={(e) => {
+                      setUserPassword(e.target.value);
+                    }}
+                    placeholder="password"
+                    className={`${style2.name} ${style2.inputstyle}`}
+                  />
+                </div>
 
-              <p className={style2.link}>
-                {/* <a href="">Forgot password ?</a> Or */}
-                Don't have an account?
-                <Link to="/signup" style={{ textDecoration: "none" }}>
-                  Sign Up
-                </Link>
-                <br></br>
-                <Link to="/logmidforgot" style={{ textDecoration: "none" }}>
-                  Forgot Password
-                </Link>
-              </p>
-            </form>
+                <div className={style2.login_button}>
+                  <button type="submit" className={style2.buttonstyle}>
+                    Login
+                  </button>
+                </div>
 
-            {/* <h2>{JSON.stringify(userPassword)}</h2> */}
+                <p className={style2.link}>
+                  {/* <a href="">Forgot password ?</a> Or */}
+                  Don't have an account?
+                  <Link to="/signup" style={{ textDecoration: "none" }}>
+                    Sign Up
+                  </Link>
+                  <br></br>
+                  <Link to="/logmidforgot" style={{ textDecoration: "none" }}>
+                    Forgot Password
+                  </Link>
+                </p>
+              </form>
+
+              {/* <h2>{JSON.stringify(userPassword)}</h2> */}
+            </div>
           </div>
         </div>
       </div>
