@@ -93,7 +93,7 @@ function Navbar() {
                   : "inactive"
               }
             >
-              Wishlist
+              WishList
               {/* <i class="fa fa-shopping-cart"></i> */}
             </Link>
             <Link
