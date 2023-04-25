@@ -26,6 +26,75 @@ const Postform = () => {
     bprice: 0,
   });
 
+
+
+  const handleOpenRazorpay =async (data,formData) =>{
+
+    const options ={
+       key : 'rzp_test_BnefbrdGHpkF0K',
+       amount : Number(data.amount) *100,
+       currency : data.currency ,
+       name : 'Lancer',
+       order_id : data.id,
+
+       handler :function  (response){
+        console.log(response)
+        console.log(response.razorpay_order_id)
+       axios.post('https://wbdservicet1.azurewebsites.net/verify',{response : response})
+        .then(res =>{
+          console.log(res)
+          alert('payment successful')
+
+
+          axios
+          .post(
+            "https://wbdservicet1.azurewebsites.net/service/add",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((response) => {
+            if (response.data == true) {
+              alert("post added successfully");
+            } else {
+              alert("post added failed retry");
+            }
+          });
+
+
+        })
+        .catch(err=>{
+          alert('payment  failed')
+          console.log(err)
+        })
+       }
+
+    }
+
+    const rzp = new window.Razorpay(options);
+
+    rzp.open()
+  }
+
+  const handlePayment =async (amount,formData)=>{
+    
+    const _data= {amount :amount}
+    await axios.post("https://wbdservicet1.azurewebsites.net/orders"  , _data)
+    .then(res =>{
+      console.log(res.data)
+       handleOpenRazorpay(res.data.data,formData)
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+
+    }
+
+
+
   const addposthandler = async (e) => {
     e.preventDefault();
     setIsFormDisable(true);
@@ -103,23 +172,30 @@ const Postform = () => {
         formData.append("category", cp);
         formData.append("seller", uid);
 
-        await axios
-          .post(
-            "https://wbdservicet1.azurewebsites.net/service/add",
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          )
-          .then((response) => {
-            if (response.data == true) {
-              alert("post added successfully");
-            } else {
-              alert("post added failed retry");
-            }
-          });
+
+        console.log(formData)
+
+        handlePayment(100,formData);
+
+        
+
+        // await axios
+        //   .post(
+        //     "https://wbdservicet1.azurewebsites.net/service/add",
+        //     formData,
+        //     {
+        //       headers: {
+        //         "Content-Type": "multipart/form-data",
+        //       },
+        //     }
+        //   )
+        //   .then((response) => {
+        //     if (response.data == true) {
+        //       alert("post added successfully");
+        //     } else {
+        //       alert("post added failed retry");
+        //     }
+        //   });
       } else {
         console.log("Err");
         seterr(temp_err_obj);
@@ -128,7 +204,10 @@ const Postform = () => {
     setIsFormDisable((prev) => !prev);
   };
 
-  console.log("hello");
+
+
+
+  // console.log("hello");
   return loginStatusObj.isLogin ? (
     <>
       <div className={"container " + styles.container}>
