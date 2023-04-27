@@ -14,3 +14,4 @@ function generateOTP() {
 test("/otpCheck", () => {
   expect(generateOTP().length).toBe(6);
 });
+

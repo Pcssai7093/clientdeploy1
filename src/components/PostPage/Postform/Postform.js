@@ -378,7 +378,7 @@ const Postform = () => {
             <div className={"col-3 " + styles.sub}>
               <input
                 type="submit"
-                value={!isFormDisable ? "Submit" : "Loading..."}
+                value={!isFormDisable ? "post" : "Loading..."}
                 className={styles.inp}
               />
             </div>
