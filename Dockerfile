@@ -6,6 +6,7 @@ COPY . .
 RUN npm run build
 
 
+
 FROM nginx:1.21.3-alpine
 COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
