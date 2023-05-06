@@ -43,19 +43,19 @@ jobs:
           npm install 
           npm test
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [build, test]
-    environment:
-      name: "production"
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: [build, test]
+  #   environment:
+  #     name: "production"
+  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: "clientt1"
-          slot-name: "production"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_ddccadef6c294972bddd2f209cf25427 }}
-          images: "index.docker.io/${{ secrets.AzureAppService_ContainerUsername_00cf81f07c564533ab7d2372aefbfd8d }}/clientt1:${{ github.sha }}"
+  #   steps:
+  #     - name: Deploy to Azure Web App
+  #       id: deploy-to-webapp
+  #       uses: azure/webapps-deploy@v2
+  #       with:
+  #         app-name: "clientt1"
+  #         slot-name: "production"
+  #         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ddccadef6c294972bddd2f209cf25427 }}
+  #         images: "index.docker.io/${{ secrets.AzureAppService_ContainerUsername_00cf81f07c564533ab7d2372aefbfd8d }}/clientt1:${{ github.sha }}"
