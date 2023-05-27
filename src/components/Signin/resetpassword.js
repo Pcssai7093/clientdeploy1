@@ -13,7 +13,7 @@ const ResetPass = () => {
     e.preventDefault();
     const id = location.state._id;
     axios
-      .post("https://wbdservicet1.azurewebsites.net/resetpassword/" + id, {
+      .post(process.env.REACT_APP_SERVER_URL + "/resetpassword/" + id, {
         password: pass.current.value,
       })
       .then((res) => {

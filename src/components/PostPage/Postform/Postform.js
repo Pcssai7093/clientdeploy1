@@ -38,7 +38,7 @@ const Postform = () => {
         console.log(response);
         console.log(response.razorpay_order_id);
         axios
-          .post("https://wbdservicet1.azurewebsites.net/verify", {
+          .post(process.env.REACT_APP_SERVER_URL + "/verify", {
             response: response,
           })
           .then((res) => {
@@ -47,7 +47,7 @@ const Postform = () => {
 
             axios
               .post(
-                "https://wbdservicet1.azurewebsites.net/service/add",
+                process.env.REACT_APP_SERVER_URL + "/service/add",
                 formData,
                 {
                   headers: {
@@ -78,7 +78,7 @@ const Postform = () => {
   const handlePayment = async (amount, formData) => {
     const _data = { amount: amount };
     await axios
-      .post("https://wbdservicet1.azurewebsites.net/orders", _data)
+      .post(process.env.REACT_APP_SERVER_URL + "/orders", _data)
       .then((res) => {
         console.log(res.data);
         handleOpenRazorpay(res.data.data, formData);
@@ -171,7 +171,7 @@ const Postform = () => {
 
         // await axios
         //   .post(
-        //     "https://wbdservicet1.azurewebsites.net/service/add",
+        //     process.env.REACT_APP_SERVER_URL+"/service/add",
         //     formData,
         //     {
         //       headers: {

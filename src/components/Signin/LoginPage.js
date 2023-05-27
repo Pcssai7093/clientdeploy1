@@ -20,7 +20,7 @@ function LoginPage() {
   const submitHandler = async (e) => {
     e.preventDefault();
     // axios
-    //   .get("https://wbdservicet1.azurewebsites.net/user/temp", {
+    //   .get(process.env.REACT_APP_SERVER_URL+"/user/temp", {
     //     headers: { authorization: cookies.get("jwtToken") },
     //   })
     //   .then((result) => {
@@ -29,8 +29,9 @@ function LoginPage() {
     //   .catch((err) => {
     //     console.log(err);
     //   });
+    console.log("serverurl " + "  " + process.env.REACT_APP_SERVER_URL);
     axios
-      .post("https://wbdservicet1.azurewebsites.net/user/chandra/signin", {
+      .post(process.env.REACT_APP_SERVER_URL + "/user/chandra/signin", {
         userEmail: userEmail,
         userPassword: userPassword,
       })

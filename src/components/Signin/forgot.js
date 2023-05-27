@@ -55,7 +55,7 @@ const Forgot = () => {
   const callfunc = (e) => {
     e.preventDefault();
     axios
-      .post("https://wbdservicet1.azurewebsites.net/forgotpass", {
+      .post(process.env.REACT_APP_SERVER_URL + "/forgotpass", {
         email: location.state,
       })
       .then((res) => {

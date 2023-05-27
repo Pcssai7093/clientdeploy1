@@ -20,7 +20,7 @@ function LoginPagee() {
   const submitHandler = async (e) => {
     e.preventDefault();
     // axios
-    //   .get("https://wbdservicet1.azurewebsites.net/user/temp", {
+    //   .get(process.env.REACT_APP_SERVER_URL+"/user/temp", {
     //     headers: { authorization: cookies.get("jwtToken") },
     //   })
     //   .then((result) => {
@@ -30,7 +30,7 @@ function LoginPagee() {
     //     console.log(err);
     //   });
     axios
-      .post("https://wbdservicet1.azurewebsites.net/user/chandra/signin", {
+      .post(process.env.REACT_APP_SERVER_URL + "/user/chandra/signin", {
         userEmail: userEmail,
         userPassword: userPassword,
       })

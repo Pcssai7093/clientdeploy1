@@ -28,7 +28,7 @@ function Profile() {
     console.log(updateData);
     await axios
       .post(
-        "https://wbdservicet1.azurewebsites.net/user/profile/update/" + uid,
+        process.env.REACT_APP_SERVER_URL + "/user/profile/update/" + uid,
         updateData
       )
       .then((response) => {
@@ -71,7 +71,7 @@ function Profile() {
 
   useEffect(() => {
     axios
-      .get("https://wbdservicet1.azurewebsites.net/user/profile/" + profilerId)
+      .get(process.env.REACT_APP_SERVER_URL + "/user/profile/" + profilerId)
       .then((result) => {
         console.log("user data fetched");
         let data = result.data;

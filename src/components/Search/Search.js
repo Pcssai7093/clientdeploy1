@@ -39,7 +39,8 @@ function Search() {
   useEffect(() => {
     axios
       .get(
-        `https://wbdservicet1.azurewebsites.net/service/count/${filter.search}/${filter.sort}/${filter.category}/${filter.price}`
+        process.env.REACT_APP_SERVER_URL +
+          `/service/count/${filter.search}/${filter.sort}/${filter.category}/${filter.price}`
       )
       .then((result) => {
         // console.log("here");
@@ -52,7 +53,8 @@ function Search() {
 
         axios
           .get(
-            `https://wbdservicet1.azurewebsites.net/service/${filter.search}/${filter.sort}/${filter.category}/${filter.price}/${paginate.limit}/${paginate.skip}`
+            process.env.REACT_APP_SERVER_URL +
+              `/service/${filter.search}/${filter.sort}/${filter.category}/${filter.price}/${paginate.limit}/${paginate.skip}`
           )
           .then((result) => {
             // setData(result.data);
@@ -74,7 +76,8 @@ function Search() {
     console.log("update filter");
     axios
       .get(
-        `https://wbdservicet1.azurewebsites.net/service/${filter.search}/${filter.sort}/${filter.category}/${filter.price}/10000/0`
+        process.env.REACT_APP_SERVER_URL +
+          `/service/${filter.search}/${filter.sort}/${filter.category}/${filter.price}/10000/0`
       )
       .then((result) => {
         // setData(result.data);
@@ -111,9 +114,7 @@ function Search() {
     //     console.log(err);
     //   });
     axios
-      .get(
-        `https://wbdservicet1.azurewebsites.net/service/0/0/0/1000000/100000/0`
-      )
+      .get(process.env.REACT_APP_SERVER_URL + `/service/0/0/0/1000000/100000/0`)
       .then((result) => {
         // setData(result.data);
         setPaginate({
@@ -164,11 +165,10 @@ function Search() {
     //* on submit read all the filter options retrive the data and set the initial paginate values
     axios
       .get(
-        `https://wbdservicet1.azurewebsites.net/service/${filter.search}/${
-          filter.sort
-        }/${filter.category}/${filter.price}/${paginate.limit}/${
-          paginate.skip + 9
-        }`
+        process.env.REACT_APP_SERVER_URL +
+          `/service/${filter.search}/${filter.sort}/${filter.category}/${
+            filter.price
+          }/${paginate.limit}/${paginate.skip + 9}`
       )
       .then((result) => {
         // setData(result.data);
@@ -192,11 +192,10 @@ function Search() {
     //* on submit read all the filter options retrive the data and set the initial paginate values
     axios
       .get(
-        `https://wbdservicet1.azurewebsites.net/service/${filter.search}/${
-          filter.sort
-        }/${filter.category}/${filter.price}/${paginate.limit}/${
-          paginate.skip - 9
-        }`
+        process.env.REACT_APP_SERVER_URL +
+          `/service/${filter.search}/${filter.sort}/${filter.category}/${
+            filter.price
+          }/${paginate.limit}/${paginate.skip - 9}`
       )
       .then((result) => {
         // setData(result.data);

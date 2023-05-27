@@ -1,0 +1,212 @@
+# Query: process.env
+# ContextLines: 1
+
+47 results - 22 files
+
+src\App.js:
+  56            <Route exact path="/envtest">
+  57:             env is {process.env.REACT_APP_SERVER_URL}
+  58            </Route>
+
+src\components\AdminLogin\AdminLogin.js:
+  18      axios
+  19:       .post(process.env.REACT_APP_SERVER_URL + "/admin/signin", {
+  20          usnam: usnam,
+
+src\components\Chat\conversations\Conversation.js:
+  10    // const [user, setUser] = useState(null);
+  11:   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  12  
+
+src\components\Chat\messenger\Messenger copy.js:
+   32    useEffect(() => {
+   33:     setSocket(io(process.env.REACT_APP_SERVER_URL + ""));
+   34    }, []);
+
+   37      axios
+   38:       .get(process.env.REACT_APP_SERVER_URL + `/chat/conversation/${currentUserId}`)
+   39        .then((result) => {
+
+   51      axios
+   52:       .get(process.env.REACT_APP_SERVER_URL + `/chat/message/${currentConversationId}`)
+   53        .then((result) => {
+
+  121      // await axios
+  122:     //   .get(process.env.serverur+`/chat/message/${cid}`)
+  123      //   .then((result) => {
+
+  151      await axios
+  152:       .post(process.env.REACT_APP_SERVER_URL + "/chat/message/add", data)
+  153        .then((result) => {
+
+src\components\Chat\messenger\Messenger.js:
+   37    useEffect(() => {
+   38:     setSocket(io(process.env.REACT_APP_SERVER_URL + ""));
+   39    }, []);
+
+   42      axios
+   43:       .get(process.env.REACT_APP_SERVER_URL + `/chat/conversation/${currentUserId}`)
+   44        .then((result) => {
+
+   58      axios
+   59:       .get(process.env.REACT_APP_SERVER_URL + `/chat/message/${currentConversationId}`)
+   60        .then((result) => {
+
+  127      // await axios
+  128:     //   .get(process.env.serverur+`/chat/message/${cid}`)
+  129      //   .then((result) => {
+
+  157      await axios
+  158:       .post(process.env.REACT_APP_SERVER_URL + "/chat/message/add", data)
+  159        .then((result) => {
+
+src\components\Description\Description.js:
+  25      axios
+  26:       .get(process.env.REACT_APP_SERVER_URL + "/service/" + id)
+  27        .then((response) => {
+
+  38      const res = await axios.get(
+  39:       process.env.REACT_APP_SERVER_URL + "/user/" + uid,
+  40        {
+
+  57      await axios
+  58:       .post(process.env.REACT_APP_SERVER_URL + "/wishlist/add", data)
+  59        .then((res) => {
+
+  81        await axios
+  82:         .post(process.env.REACT_APP_SERVER_URL + "/chat/conversation/add", data)
+  83          .then((result) => {
+
+src\components\Landinpage\Forms.jsx:
+  28      setIsSubmit(true);
+  29:     await axios.post(process.env.REACT_APP_SERVER_URL+"/insert",values).then((result)=>{
+  30      alert("query posted");
+
+src\components\Navbar\Navbar.js:
+  24      axios
+  25:       .get(process.env.REACT_APP_SERVER_URL + "/user/" + uid, {
+  26          headers: { authorization: cookies.get("jwtToken") },
+
+  38      axios
+  39:       .get(process.env.REACT_APP_SERVER_URL + "/chat/countUnseen/" + uid)
+  40        .then((response) => {
+
+src\components\PostPage\Postform\Postform.js:
+   40          axios
+   41:           .post(process.env.REACT_APP_SERVER_URL + "/verify", {
+   42              response: response,
+
+   49                .post(
+   50:                 process.env.REACT_APP_SERVER_URL + "/service/add",
+   51                  formData,
+
+   80      await axios
+   81:       .post(process.env.REACT_APP_SERVER_URL + "/orders", _data)
+   82        .then((res) => {
+
+  173          //   .post(
+  174:         //     process.env.REACT_APP_SERVER_URL+"/service/add",
+  175          //     formData,
+
+src\components\Profile\profile.js:
+  30        .post(
+  31:         process.env.REACT_APP_SERVER_URL + "/user/profile/update/" + uid,
+  32          updateData
+
+  73      axios
+  74:       .get(process.env.REACT_APP_SERVER_URL + "/user/profile/" + profilerId)
+  75        .then((result) => {
+
+src\components\Search\Search.js:
+   41        .get(
+   42:         process.env.REACT_APP_SERVER_URL +
+   43            `/service/count/${filter.search}/${filter.sort}/${filter.category}/${filter.price}`
+
+   55            .get(
+   56:             process.env.REACT_APP_SERVER_URL +
+   57                `/service/${filter.search}/${filter.sort}/${filter.category}/${filter.price}/${paginate.limit}/${paginate.skip}`
+
+   78        .get(
+   79:         process.env.REACT_APP_SERVER_URL +
+   80            `/service/${filter.search}/${filter.sort}/${filter.category}/${filter.price}/10000/0`
+
+  116      axios
+  117:       .get(process.env.REACT_APP_SERVER_URL + `/service/0/0/0/1000000/100000/0`)
+  118        .then((result) => {
+
+  167        .get(
+  168:         process.env.REACT_APP_SERVER_URL+
+  169            `/service/${filter.search}/${filter.sort}/${filter.category}/${
+
+  194        .get(
+  195:         process.env.REACT_APP_SERVER_URL +
+  196            `/service/${filter.search}/${filter.sort}/${filter.category}/${
+
+src\components\Services\Services.js:
+  30      await axios
+  31:       .post(process.env.REACT_APP_SERVER_URL + "/wishlist/add", data)
+  32        .then((res) => {
+
+src\components\Signin\forgot.js:
+  57      axios
+  58:       .post(process.env.REACT_APP_SERVER_URL + "/forgotpass", {
+  59          email: location.state,
+
+src\components\Signin\fotp.js:
+  61      axios
+  62:       .post(process.env.REACT_APP_SERVER_URL + "/forgotpass", {
+  63          email: location.state,
+
+src\components\Signin\LoginPage.js:
+  22      // axios
+  23:     //   .get(process.env.REACT_APP_SERVER_URL+"/user/temp", {
+  24      //     headers: { authorization: cookies.get("jwtToken") },
+
+  31      //   });
+  32:     console.log("serverurl " + "  " + process.env.REACT_APP_SERVER_URL);
+  33      axios
+  34:       .post(process.env.REACT_APP_SERVER_URL + "/user/chandra/signin", {
+  35          userEmail: userEmail,
+
+src\components\Signin\LoginPagee.js:
+  22      // axios
+  23:     //   .get(process.env.REACT_APP_SERVER_URL+"/user/temp", {
+  24      //     headers: { authorization: cookies.get("jwtToken") },
+
+  32      axios
+  33:       .post(process.env.REACT_APP_SERVER_URL + "/user/chandra/signin", {
+  34          userEmail: userEmail,
+
+src\components\Signin\resetpassword.js:
+  15      axios
+  16:       .post(process.env.REACT_APP_SERVER_URL + "/resetpassword/" + id, {
+  17          password: pass.current.value,
+
+src\components\Signup\onetime.js:
+  51      if (pto.current.value === genotp) {
+  52:       fetch(process.env.REACT_APP_SERVER_URL + "/user/chandra/signup", {
+  53          method: "POST",
+
+src\components\Signup\otp.js:
+  48      if (pto.current.value === genotp) {
+  49:       fetch(process.env.REACT_APP_SERVER_URL + "/user/chandra/signup", {
+  50          method: "POST",
+
+src\components\Signup\SignUp.js:
+  55        //   console.log("no errors");
+  56:       //   fetch(process.env.REACT_APP_SERVER_URL+"/user/chandra/signup", {
+  57        //     method: "POST",
+
+src\components\Signup\SignUpe.js:
+  55        //   console.log("no errors");
+  56:       //   fetch(process.env.REACT_APP_SERVER_URL+"/user/chandra/signup", {
+  57        //     method: "POST",
+
+src\components\Wishlist\Wishlist.js:
+  32      axios
+  33:       .post(process.env.REACT_APP_SERVER_URL + "/wishlist/delete", data)
+  34        .then((result) => {
+
+  52      axios
+  53:       .get(process.env.REACT_APP_SERVER_URL + "/wishlist/" + uid)
+  54        .then((result) => {

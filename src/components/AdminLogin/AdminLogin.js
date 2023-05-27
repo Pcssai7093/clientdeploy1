@@ -16,7 +16,7 @@ const AdminLogin = () => {
   const addaduser = async (event) => {
     event.preventDefault();
     axios
-      .post("https://wbdservicet1.azurewebsites.net/admin/signin", {
+      .post(process.env.REACT_APP_SERVER_URL + "/admin/signin", {
         usnam: usnam,
         eml: eml,
       })

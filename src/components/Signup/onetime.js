@@ -49,7 +49,7 @@ const Onetime = () => {
   const callfunc = (e) => {
     e.preventDefault();
     if (pto.current.value === genotp) {
-      fetch("https://wbdservicet1.azurewebsites.net/user/chandra/signup", {
+      fetch(process.env.REACT_APP_SERVER_URL + "/user/chandra/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(location.state),

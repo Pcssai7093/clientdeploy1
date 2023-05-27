@@ -22,7 +22,7 @@ function Navbar() {
   const [unseen, setUnseen] = useState(0);
   useEffect(() => {
     axios
-      .get("https://wbdservicet1.azurewebsites.net/user/" + uid, {
+      .get(process.env.REACT_APP_SERVER_URL + "/user/" + uid, {
         headers: { authorization: cookies.get("jwtToken") },
       })
       .then((response) => {
@@ -36,7 +36,7 @@ function Navbar() {
       });
 
     axios
-      .get("https://wbdservicet1.azurewebsites.net/chat/countUnseen/" + uid)
+      .get(process.env.REACT_APP_SERVER_URL + "/chat/countUnseen/" + uid)
       .then((response) => {
         setUnseen((prev) => {
           return response.data.count;

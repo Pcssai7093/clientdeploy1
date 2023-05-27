@@ -30,13 +30,13 @@ export default function Messenger() {
 
   const [socket, setSocket] = useState(null);
   useEffect(() => {
-    setSocket(io("https://wbdservicet1.azurewebsites.net"));
+    setSocket(io(process.env.REACT_APP_SERVER_URL + ""));
   }, []);
 
   useEffect(() => {
     axios
       .get(
-        `https://wbdservicet1.azurewebsites.net/chat/conversation/${currentUserId}`
+        process.env.REACT_APP_SERVER_URL + `/chat/conversation/${currentUserId}`
       )
       .then((result) => {
         setConversations(result.data);
@@ -52,7 +52,8 @@ export default function Messenger() {
   useEffect(() => {
     axios
       .get(
-        `https://wbdservicet1.azurewebsites.net/chat/message/${currentConversationId}`
+        process.env.REACT_APP_SERVER_URL +
+          `/chat/message/${currentConversationId}`
       )
       .then((result) => {
         if (result.data.length > 0) {
@@ -123,7 +124,7 @@ export default function Messenger() {
     setCurrentConversationId(cid);
 
     // await axios
-    //   .get(`https://wbdservicet1.azurewebsites.net/chat/message/${cid}`)
+    //   .get(process.env.REACT_APP_SERVER_URL+`/chat/message/${cid}`)
     //   .then((result) => {
     //     let users = result.data[0].users;
     //     let otherUser = users[0] !== currentUserId ? users[0] : users[1];
@@ -153,7 +154,7 @@ export default function Messenger() {
     // * handling message for live users
 
     await axios
-      .post("https://wbdservicet1.azurewebsites.net/chat/message/add", data)
+      .post(process.env.REACT_APP_SERVER_URL + "/chat/message/add", data)
       .then((result) => {
         // console.log(result);
         setMessages([...messages, result.data]);

@@ -30,7 +30,7 @@ function Wishlist() {
   function handleDeleteFromWishlist(sid) {
     let data = { sid, uid };
     axios
-      .post("https://wbdservicet1.azurewebsites.net/wishlist/delete", data)
+      .post(process.env.REACT_APP_SERVER_URL + "/wishlist/delete", data)
       .then((result) => {
         setRender(!render);
       })
@@ -50,7 +50,7 @@ function Wishlist() {
   useEffect(() => {
     const id = 1;
     axios
-      .get("https://wbdservicet1.azurewebsites.net/wishlist/" + uid)
+      .get(process.env.REACT_APP_SERVER_URL + "/wishlist/" + uid)
       .then((result) => {
         // console.log(result.data.wishlist);
         setData((prev) => result.data.wishlist);
@@ -69,49 +69,46 @@ function Wishlist() {
       });
   }, [render]);
 
+  const handleOpenRazorpay = (data) => {
+    const options = {
+      key: "rzp_test_BnefbrdGHpkF0K",
+      amount: Number(data.amount) * 100,
+      currency: data.currency,
+      name: "Lancer",
+      order_id: data.id,
 
-  const handleOpenRazorpay =(data) =>{
-
-    const options ={
-       key : 'rzp_test_BnefbrdGHpkF0K',
-       amount : Number(data.amount) *100,
-       currency : data.currency ,
-       name : 'Lancer',
-       order_id : data.id,
-
-       handler :function (response){
-        console.log(response)
-        axios.post('http://localhost:5000/verify',{response : response})
-        .then(res =>{
-          console.log(res)
-          alert('payment successful')
-        })
-        .catch(err=>{
-          alert('payment  failed')
-          console.log(err)
-        })
-       }
-
-    }
+      handler: function (response) {
+        console.log(response);
+        axios
+          .post("http://localhost:5000/verify", { response: response })
+          .then((res) => {
+            console.log(res);
+            alert("payment successful");
+          })
+          .catch((err) => {
+            alert("payment  failed");
+            console.log(err);
+          });
+      },
+    };
 
     const rzp = new window.Razorpay(options);
 
-    rzp.open()
-  }
+    rzp.open();
+  };
 
-  const handlePayment =(amount)=>{
-    
-    const _data= {amount :amount}
-    axios.post("http://localhost:5000/orders"  , _data)
-    .then(res =>{
-      console.log(res.data)
-      handleOpenRazorpay(res.data.data)
-    })
-    .catch(err =>{
-      console.log(err)
-    })
-
-    }
+  const handlePayment = (amount) => {
+    const _data = { amount: amount };
+    axios
+      .post("http://localhost:5000/orders", _data)
+      .then((res) => {
+        console.log(res.data);
+        handleOpenRazorpay(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return loginStatusObj.isLogin ? (
     <div className={styles.wishlistWrapper}>

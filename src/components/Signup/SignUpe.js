@@ -53,7 +53,7 @@ function SignUpe() {
     if (no_errors === 0) {
       //   // console.log(Object.keys(errors).length);
       //   console.log("no errors");
-      //   fetch("https://wbdservicet1.azurewebsites.net/user/chandra/signup", {
+      //   fetch(process.env.REACT_APP_SERVER_URL+"/user/chandra/signup", {
       //     method: "POST",
       //     headers: { "Content-Type": "application/json" },
       //     body: JSON.stringify(values),

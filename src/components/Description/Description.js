@@ -23,7 +23,7 @@ function Description() {
   const [serviceData, setServiceData] = useState();
   useEffect(() => {
     axios
-      .get("https://wbdservicet1.azurewebsites.net/service/" + id)
+      .get(process.env.REACT_APP_SERVER_URL + "/service/" + id)
       .then((response) => {
         setServiceData(response.data);
       })
@@ -36,7 +36,7 @@ function Description() {
 
   async function func() {
     const res = await axios.get(
-      "https://wbdservicet1.azurewebsites.net/user/" + uid,
+      process.env.REACT_APP_SERVER_URL + "/user/" + uid,
       {
         headers: { authorization: cookies.get("jwtToken") },
       }
@@ -55,7 +55,7 @@ function Description() {
     console.log(data);
     // * json server add to wishlist
     await axios
-      .post("https://wbdservicet1.azurewebsites.net/wishlist/add", data)
+      .post(process.env.REACT_APP_SERVER_URL + "/wishlist/add", data)
       .then((res) => {
         // console.log(res.data);
         history.push("/wishlist/" + uid);
@@ -79,10 +79,7 @@ function Description() {
       alert("Oops You are the Seller?");
     } else {
       await axios
-        .post(
-          "https://wbdservicet1.azurewebsites.net/chat/conversation/add",
-          data
-        )
+        .post(process.env.REACT_APP_SERVER_URL + "/chat/conversation/add", data)
         .then((result) => {
           console.log(result.data);
           history.push("/chat/" + userId);

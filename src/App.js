@@ -53,6 +53,9 @@ function App() {
       <AnimatePresence>
         <Switch location={location} key={location.key}>
           {/* Routes that do not require authorization */}
+          <Route exact path="/envtest">
+            env is {process.env.REACT_APP_SERVER_URL}
+          </Route>
           <Route exact path="/">
             <Navbar1 />
             <Hero />

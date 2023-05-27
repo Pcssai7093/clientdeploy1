@@ -26,7 +26,7 @@ let handleFormSubmit=async(event)=>{
     event.preventDefault();
     setFormErrors(validate(values));
     setIsSubmit(true);
-    await axios.post("https://wbdservicet1.azurewebsites.net/insert",values).then((result)=>{
+    await axios.post(process.env.REACT_APP_SERVER_URL+"/insert",values).then((result)=>{
     alert("query posted");
     history.push("/");
     })

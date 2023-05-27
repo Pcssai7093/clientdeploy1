@@ -28,7 +28,7 @@ function Services({ data }) {
     console.log(data);
     // * json server add to wishlist
     await axios
-      .post("https://wbdservicet1.azurewebsites.net/wishlist/add", data)
+      .post(process.env.REACT_APP_SERVER_URL + "/wishlist/add", data)
       .then((res) => {
         // console.log(res.data);
         history.push("/wishlist/" + userId);
