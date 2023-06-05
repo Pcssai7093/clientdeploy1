@@ -44,10 +44,10 @@ import ResetPass from "./components/Signin/resetpassword";
 
 function App() {
   const location = useLocation();
-  const [color, setColor] = useState(true);
-  const [elem, setElem] = useState(document.body);
-  const loginStatus = useContext(loginContext);
-  const [image, setImage] = useState("");
+  // const [color, setColor] = useState(true);
+  // const [elem, setElem] = useState(document.body);
+  // const loginStatus = useContext(loginContext);
+  // const [image, setImage] = useState("");
   return (
     <div className="App">
       <AnimatePresence>

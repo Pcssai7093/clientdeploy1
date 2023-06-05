@@ -14,9 +14,7 @@ export default function Messenger() {
   // * my code
   const loginStatusObj = useContext(loginContext);
   const cookies = new Cookies();
-
   const currentUserId = useParams().uid;
-  // console.log(currentUserId);
 
   // * to scroll to bottom of div
   const bottomRef = useRef(null);
@@ -128,25 +126,6 @@ export default function Messenger() {
     // console.log(cid);
     // * useEffect runs for the change in conversation id
     setCurrentConversationId(cid);
-
-    // await axios
-    //   .get(process.env.REACT_APP_SERVER_URL+`/chat/message/${cid}`)
-    //   .then((result) => {
-    //     let users = result.data[0].users;
-    //     let otherUser = users[0] !== currentUserId ? users[0] : users[1];
-    //     // console.log("otherUser: " + otherUser);
-    //     // setCurrentConversationUser(otherUser);
-    //     // setMessages(result.data[0].messages);
-    //     // console.log(messages);
-    //     set(otherUser, result.data[0].messages);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    // setTimeout(() => {
-    //   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-    // }, 1000);
   }
 
   async function handleNewMessageSubmit() {
@@ -200,6 +179,7 @@ export default function Messenger() {
               currentConversationId &&
               conversations.map((c) => (
                 <div
+                  key={c._id}
                   onClick={() => {
                     handleConversationClick(c._id);
                   }}
@@ -220,7 +200,7 @@ export default function Messenger() {
                 <div className={styles.chatBoxTop}>
                   {messages?.length > 0 ? (
                     messages.map((m) => (
-                      <div>
+                      <div key={m._id}>
                         <Message
                           message={m.message}
                           own={m.from === currentUserId}

@@ -71,10 +71,20 @@
     border-radius: 5px;
   }
   
-  .topnav a.logOutLink {
+  .topnav button.logOutLink {
     background-color: red;
     color: white;
     border-radius: 5px;
+    display: block;
+    text-align: center;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-size: large;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-right: 5px;
+    border: none;
   }
 
   .topnav .icon {

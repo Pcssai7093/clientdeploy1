@@ -93,7 +93,7 @@ function Profile() {
             className={styles.profileIcon}
             src={profileIcon}
             alt="profile"
-            srcset=""
+            srcSet=""
           />
           <form
             className={`${styles.searchComp} ${
@@ -169,7 +169,7 @@ function Profile() {
                   <div className={styles.skillsList}>
                     {userSkills &&
                       userSkills.map((v) => (
-                        <div className={styles.skillItem}>
+                        <div className={styles.skillItem} key={v}>
                           <div className={styles.skillItemValue}>{v}</div>
                           {uid === profilerId && (
                             <button
@@ -248,7 +248,7 @@ function Profile() {
             <div className={styles.serviceDiv}>
               {userData.services &&
                 userData.services.map((data) => (
-                  <div className={styles.card}>
+                  <div className={styles.card} key={data._id}>
                     <img
                       src={
                         data?.productImages.length > 0
@@ -272,7 +272,10 @@ function Profile() {
                           }}
                         >
                           {" "}
-                          <i class="fa fa-search" aria-hidden="true"></i>{" "}
+                          <i
+                            className="fa fa-search"
+                            aria-hidden="true"
+                          ></i>{" "}
                         </Link>
                       </button>
                     </p>

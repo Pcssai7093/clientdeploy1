@@ -61,7 +61,6 @@ function Wishlist() {
             sum = sum + i.price;
           }
         });
-        console.log(sum);
         setPrice(sum);
       })
       .catch((err) => {
@@ -115,9 +114,9 @@ function Wishlist() {
       {/* <h2>WishList</h2> */}
       <div className={styles.serviceDiv}>
         {data &&
-          data.map(
-            (data) =>
-              data.isBlock === false && (
+          data.map((data) => (
+            <div key={data._id}>
+              {data.isBlock === false && (
                 <div className={styles.card}>
                   <img
                     src={
@@ -148,7 +147,7 @@ function Wishlist() {
                         }}
                       >
                         {" "}
-                        <i class="fa fa-search" aria-hidden="true"></i>{" "}
+                        <i className="fa fa-search" aria-hidden="true"></i>{" "}
                       </Link>
                     </button>
                     <button
@@ -157,12 +156,13 @@ function Wishlist() {
                         handleDeleteFromWishlist(data._id);
                       }}
                     >
-                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                   </p>
                 </div>
-              )
-          )}
+              )}
+            </div>
+          ))}
       </div>
     </div>
   ) : (

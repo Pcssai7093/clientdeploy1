@@ -1,8 +1,9 @@
 // import "./message.css";
 // import { format } from "timeago.js";
 import styles from "./message.module.css";
+import React from "react";
 
-export default function Message({ message, own, time }) {
+function Message({ message, own, time }) {
   return (
     <div
       className={own ? `${styles.message} ${styles.own}` : `${styles.message}`}
@@ -14,3 +15,5 @@ export default function Message({ message, own, time }) {
     </div>
   );
 }
+
+export default React.memo(Message);

@@ -1,29 +1,7 @@
-// import axios from "axios";
-import { useEffect, useState } from "react";
-// import "./conversation.css";
 import styles from "./conversation.module.css";
-export default function Conversation({
-  conversation,
-  currentUserId,
-  selected,
-}) {
-  // const [user, setUser] = useState(null);
-  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+import React from "react";
 
-  // useEffect(() => {
-  //   const friendId = conversation.members.find((m) => m !== currentUser._id);
-
-  //   const getUser = async () => {
-  //     try {
-  //       const res = await axios("/users?userId=" + friendId);
-  //       setUser(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getUser();
-  // }, [currentUser, conversation]);
-
+function Conversation({ conversation, currentUserId, selected }) {
   return (
     <div
       className={
@@ -41,3 +19,5 @@ export default function Conversation({
     </div>
   );
 }
+
+export default React.memo(Conversation);

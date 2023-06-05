@@ -250,8 +250,9 @@ function Search() {
               // if (searchValue == "") searchValue = false;
               setFilter({ ...filter, sort: sortValue });
             }}
+            defaultValue={0}
           >
-            <option value={0} selected hidden>
+            <option value={0} hidden>
               Select
             </option>
             <option value="priceLTH">Low to High</option>
@@ -268,8 +269,9 @@ function Search() {
               // if (searchValue == "") searchValue = false;
               setFilter({ ...filter, category: catValue });
             }}
+            defaultValue={0}
           >
-            <option value={0} selected hidden>
+            <option value={0} hidden>
               Select
             </option>
             <option value="programming">Programming</option>

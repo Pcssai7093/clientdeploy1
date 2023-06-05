@@ -118,7 +118,7 @@ function Navbar() {
               Profile
               {/* <i class="fa fa-user-circle-o" aria-hidden="true"></i> */}
             </Link>
-            <Link
+            <button
               className={styles.logOutLink}
               onClick={() => {
                 cookies.remove("jwtToken");
@@ -127,7 +127,7 @@ function Navbar() {
             >
               LogOut
               {/* <i class="fa fa-sign-out" aria-hidden="true"></i> */}
-            </Link>
+            </button>
           </div>
         </motion.div>
       )}

@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { setRef } from "@mui/material";
 
@@ -48,6 +49,7 @@ function Services({ data }) {
       >
         {data.map((data) => (
           <motion.div
+            key={data._id}
             className={styles.card}
             whileHover={{
               scale: 0.9,
@@ -89,7 +91,7 @@ function Services({ data }) {
                   }}
                 >
                   {" "}
-                  <i class="fa fa-search" aria-hidden="true"></i>{" "}
+                  <i className="fa fa-search" aria-hidden="true"></i>{" "}
                 </Link>
               </button>
               <button
@@ -98,7 +100,7 @@ function Services({ data }) {
                   handleAddToWishlist(data._id);
                 }}
               >
-                <i class="fa fa-heart" aria-hidden="true"></i>
+                <i className="fa fa-heart" aria-hidden="true"></i>
               </button>
             </p>
           </motion.div>
@@ -108,4 +110,4 @@ function Services({ data }) {
   );
 }
 
-export default Services;
+export default React.memo(Services);
