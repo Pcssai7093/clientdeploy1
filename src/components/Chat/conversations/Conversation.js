@@ -1,7 +1,7 @@
 import styles from "./conversation.module.css";
 import React from "react";
 
-function Conversation({ conversation, currentUserId, selected }) {
+function Conversation({ conversation, currentUserId, selected, isOnline }) {
   return (
     <div
       className={
@@ -16,6 +16,10 @@ function Conversation({ conversation, currentUserId, selected }) {
           ? conversation.users[0].fullname
           : conversation.users[1].fullname}
       </span>
+      <sup className={styles.onlineStatus}>
+        {isOnline ? "online" : ""}
+        {/* {isOnline} */}
+      </sup>
     </div>
   );
 }

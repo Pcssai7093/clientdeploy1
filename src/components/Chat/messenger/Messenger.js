@@ -7,10 +7,23 @@ import { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 // import { format } from "timeago.js";
+// import TimeAgo from "javascript-time-ago";
+
+// import en from "javascript-time-ago/locale/en.json";
+// import ru from "javascript-time-ago/locale/ru.json";
+
+// TimeAgo.addDefaultLocale(en);
+// TimeAgo.addLocale(ru);
+
+// import React from "react";
+// import ReactTimeAgo from "react-time-ago";
+
 import loginContext from "../../../index";
 import Cookies from "universal-cookie";
+import { log } from "util";
 
 export default function Messenger() {
+  console.log("Messenger rendered");
   // * my code
   const loginStatusObj = useContext(loginContext);
   const cookies = new Cookies();
@@ -32,8 +45,43 @@ export default function Messenger() {
   //* socketio code
 
   const [socket, setSocket] = useState(null);
+  const [liveUsers, setLiveUsers] = useState({});
+  console.log(liveUsers, "outside useef", conversations);
   useEffect(() => {
     setSocket(io(process.env.REACT_APP_SERVER_URL + ""));
+    // socket?.on("connect", () => {
+    //   console.log(
+    //     `You initiated connection and your socket id is ${socket.id}`
+    //   );
+
+    //   // * sending userId to to server
+    //   socket.emit("addUser", currentUserId);
+
+    //   // * can write event here as connectection is established
+    //   socket.on("welcome", (msg) => {
+    //     console.log(msg);
+    //   });
+
+    //   socket.on("receiveMessage", (fromUserId, toUserId, Message) => {
+    //     if (fromUserId === currentConversationUser.current) {
+    //       messagesRef.current = [...messagesRef.current, Message];
+    //       setMessages((prevMes) => {
+    //         console.log(prevMes);
+    //         return [...prevMes, Message];
+    //       });
+    //       setTimeout(() => {
+    //         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    //       }, 300);
+    //     }
+    //   });
+
+    //   // setTimeout(() => {
+    //   //   socket.emit(
+    //   //     "sendMessage",
+    //   //     (currentUserId, currentConversationUser, "my message")
+    //   //   );
+    //   // }, 1000);
+    // });
   }, []);
 
   useEffect(() => {
@@ -84,15 +132,12 @@ export default function Messenger() {
       console.log(
         `You initiated connection and your socket id is ${socket.id}`
       );
-
       // * sending userId to to server
       socket.emit("addUser", currentUserId);
-
       // * can write event here as connectection is established
       socket.on("welcome", (msg) => {
         console.log(msg);
       });
-
       socket.on("receiveMessage", (fromUserId, toUserId, Message) => {
         if (fromUserId === currentConversationUser.current) {
           messagesRef.current = [...messagesRef.current, Message];
@@ -105,14 +150,35 @@ export default function Messenger() {
           }, 300);
         }
       });
+      socket.on("sendLiveUsers", (users) => {
+        // console.log("users received", users);
+        setLiveUsers((prev) => {
+          return users;
+        });
+        console.log(liveUsers, currentConversationId);
+        setConversations((prev) => {
+          return [...prev];
+        });
+      });
+      // let cusInterval = setInterval(() => {
 
-      setTimeout(() => {
-        socket.emit(
-          "sendMessage",
-          (currentUserId, currentConversationUser, "my message")
-        );
-      }, 1000);
+      // }, 1000 * 5);
+      // setTimeout(() => {
+      //   socket.emit(
+      //     "sendMessage",
+      //     (currentUserId, currentConversationUser, "my message")
+      //   );
+      // }, 1000);
     });
+    return () => {
+      // console.log("hello unmount");
+      console.log(socket?.id);
+      // socket?.on("disconnect", () => {
+      //   console.log("disconnect the socket");
+      // });
+      socket?.emit("forceDisconnect");
+      // clearInterval(cusInterval);
+    };
   }, [socket]);
 
   function set(othUser, msgs) {
@@ -169,13 +235,14 @@ export default function Messenger() {
       {/* <Topbar /> */}
       <div className={styles.messenger}>
         <div className={styles.chatMenu}>
-          <div className={styles.chatTitle}>Chat</div>
+          <div className={styles.chatTitle}>Chats</div>
           <div className={styles.chatMenuWrapper}>
             {/* <input
               placeholder="start a new conversation"
               className="chatMenuInput"
             /> */}
-            {conversations &&
+            {liveUsers &&
+              conversations &&
               currentConversationId &&
               conversations.map((c) => (
                 <div
@@ -188,7 +255,15 @@ export default function Messenger() {
                     conversation={c}
                     currentUserId={currentUserId}
                     selected={c._id === currentConversationId}
+                    isOnline={
+                      liveUsers[
+                        c.users[0]._id != currentUserId
+                          ? c.users[0]._id
+                          : c.users[1]._id
+                      ]
+                    }
                   />
+                  {/* {c._id} */}
                 </div>
               ))}
           </div>
@@ -204,7 +279,7 @@ export default function Messenger() {
                         <Message
                           message={m.message}
                           own={m.from === currentUserId}
-                          // time={format(m.createdAt)}
+                          time={m.createdAt}
                         />
                       </div>
                     ))

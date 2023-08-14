@@ -37,6 +37,7 @@ function LoginPagee() {
       .then((res) => {
         let responseData = res.data;
         console.log(responseData);
+        // console.log("fuck btp");
         if (responseData.errors.length > 0) {
           alert(responseData.errors[0]);
         } else {
@@ -47,6 +48,7 @@ function LoginPagee() {
           cookies.set("jwtToken", jwtToken, { expires: d });
           let userData = responseData.result;
           console.log(userData);
+          console.log(res);
           // loginStatusObj.isLogin = true;
           history.push("/home/" + userData[0]._id);
         }

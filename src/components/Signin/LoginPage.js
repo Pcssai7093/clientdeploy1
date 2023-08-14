@@ -48,6 +48,8 @@ function LoginPage() {
           cookies.set("jwtToken", jwtToken, { expires: d });
           let userData = responseData.result;
           console.log(userData);
+          console.log("hello");
+          console.log(res);
           // loginStatusObj.isLogin = true;
           history.push("/home/" + userData[0]._id);
         }
